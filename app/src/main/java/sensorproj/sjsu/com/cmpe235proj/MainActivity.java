@@ -1,17 +1,31 @@
 package sensorproj.sjsu.com.cmpe235proj;
-
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.GridView;
+
+import java.util.ArrayList;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
+    ArrayList<Sensor> sensors = new ArrayList<Sensor>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+        sensors.add(new Sensor("SJ", "San Jose sensor",37.329782, -121.88889));
+
+        sensors.add(new Sensor("Earth Quake 1", "earthquake sensor 1",32.326782, -101.81889));
+        sensors.add(new Sensor("Earth Quake 2", "earthquake sensor",37.326782, -121.81889));
+
+        GridView gridview = (GridView) findViewById(R.id.gridview);
+        gridview.setAdapter(new ImageAdapter(this, sensors));
+
     }
 
 
