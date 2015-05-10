@@ -12,6 +12,9 @@ public class Sensor implements Serializable
     double longitude, latitude;
     String name, description;
 
+
+    int id, userid;
+
     public Sensor(){
 
     }
@@ -56,4 +59,20 @@ public class Sensor implements Serializable
         this.description = description;
     }
 
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getUserId() {
+        return userid;
+    }
+
+    public void setUserId(int userid) {
+        this.userid = userid;
+    }
 }

@@ -14,6 +14,7 @@
 
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
 
+
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true"/>
@@ -27,13 +28,22 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name" >
+            android:name=".LoginActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/android:Theme.Light.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".RegistrationActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
         </activity>
         <activity
             android:name=".MapActivity"
@@ -47,7 +57,7 @@
 
 
         <meta-data android:name="com.google.android.maps.v2.API_KEY"
-            android:value=""/>
+            android:value="AIzaSyC7hDu15nfPp2OUUP_mjH0gvwrJUTt6jbo"/>
     </application>
 
 </manifest>

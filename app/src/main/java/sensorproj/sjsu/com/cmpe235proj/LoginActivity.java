@@ -31,6 +31,7 @@ public class LoginActivity extends Activity {
 		setContentView(R.layout.login_screen);
 
 		Button loginButton = (Button) findViewById(R.id.loginButton);
+        Button registerButton = (Button) findViewById(R.id.createAccountButton);
 		usernameField = (EditText) findViewById(R.id.usernameField);
 		passwordField = (EditText) findViewById(R.id.passwordField);
 
@@ -52,6 +53,18 @@ public class LoginActivity extends Activity {
 			}
 
 		});
+
+        registerButton.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
+                startActivity(intent);
+                finish();
+            }
+
+        });
 	}
 
 	class LoginAsycTask extends AsyncTask<String, String, String> {
@@ -68,16 +81,17 @@ public class LoginActivity extends Activity {
 
 		@Override
 		protected String doInBackground(String... input) {
-			//return NetworkingCall.getJSON(AppConstants.LOGIN_URL + input[0]);
-            return "";
+			return NetworkingCall.login(input[0], input[1]);
+           // return "";
 		}
 
 		protected void onPostExecute(String result) {
 
-			Log.i("result", result);
-			if (result != null && !result.equalsIgnoreCase("[]")) // correct Credentials
+			if (result != null && !result.contains("<html>")) // correct Credentials
 			{
-
+               Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                startActivity(intent);
+                finish();
 
 			} else // incorrect credentials
 			{
@@ -87,10 +101,12 @@ public class LoginActivity extends Activity {
 
 				// clear password field
 				passwordField.setText("");
-
-				// close progress dialog
-				 progressBar.dismiss();
 			}
+
+
+
+            // close progress dialog
+            progressBar.dismiss();
 			
 		}
 	}
