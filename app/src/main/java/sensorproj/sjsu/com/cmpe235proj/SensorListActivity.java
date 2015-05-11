@@ -19,19 +19,21 @@ public class SensorListActivity extends Activity {
     private ProgressDialog progressBar;
     private  ArrayList<Sensor> sensors;
     private  ListView listview;
+    private User user;
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_layout);
 
-        //Intent intent = getIntent();
+        Intent intent = getIntent();
+        user = (User) intent.getSerializableExtra(AppConstants.USER);
         //sensors = (ArrayList<Sensor>) intent.getSerializableExtra(AppConstants.SENSOR_LIST);
 
         listview = (ListView) findViewById(R.id.sensorListView);
 
 
-        new GetSensorAsycTask().execute();
+        new GetSensorAsycTask().execute(user.getId());
     }
 
 
@@ -50,7 +52,7 @@ public class SensorListActivity extends Activity {
 
         @Override
         protected String doInBackground(String... input) {
-            return NetworkingCall.getJSON(AppConstants.SENSOR_URL);
+            return NetworkingCall.getJSON(AppConstants.SENSOR_URL + input[0]);
            // return "";
         }
 

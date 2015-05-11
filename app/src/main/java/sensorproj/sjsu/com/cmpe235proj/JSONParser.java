@@ -26,11 +26,11 @@ public class JSONParser {
 
 
                 if(s.has(AppConstants.SENSOR_ID))
-                    sensor.setId(s.getInt(AppConstants.SENSOR_ID));
+                    sensor.setId(s.getString(AppConstants.SENSOR_ID));
                 if(s.has(AppConstants.SENSOR_NAME))
                     sensor.setName(s.getString(AppConstants.SENSOR_NAME));
                 if(s.has(AppConstants.SENSOR_USER_ID))
-                     sensor.setUserId(s.getInt(AppConstants.SENSOR_USER_ID));
+                     sensor.setUserId(s.getString(AppConstants.SENSOR_USER_ID));
                 if(s.has(AppConstants.SENSOR_LATITUDE))
                     sensor.setLatitude(s.getDouble(AppConstants.SENSOR_LATITUDE));
                 if(s.has(AppConstants.SENSOR_LONGITUDE))
@@ -44,5 +44,26 @@ public class JSONParser {
 
 
         return sensors;
+    }
+
+    public static User parseUser(String json){
+        User user =  new User();;
+
+        try {
+            JSONObject jsonObj = new JSONObject(json);
+
+            if (jsonObj.has(AppConstants.USER_ID))
+                user.setId(jsonObj.getString(AppConstants.USER_ID));
+            if (jsonObj.has(AppConstants.USER_FIRSTNAME))
+                user.setFirstName(jsonObj.getString(AppConstants.USER_FIRSTNAME));
+            if (jsonObj.has(AppConstants.USER_LASTNAME))
+                user.setLastName(jsonObj.getString(AppConstants.USER_LASTNAME));
+            if (jsonObj.has(AppConstants.USER_EMAIL))
+                 user.setEmail(jsonObj.getString(AppConstants.USER_EMAIL));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return user;
     }
 }

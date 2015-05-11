@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends Activity {
     ArrayList<Sensor> sensors = new ArrayList<Sensor>();
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,14 +19,15 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
 
+        Intent intent = getIntent();
+        user = (User) intent.getSerializableExtra(AppConstants.USER);
 
-        sensors.add(new Sensor("SJ", "San Jose sensor",37.329782, -121.88889));
-
-        sensors.add(new Sensor("Earth Quake 1", "earthquake sensor 1",32.326782, -101.81889));
-        sensors.add(new Sensor("Earth Quake 2", "earthquake sensor",37.326782, -121.81889));
+       // sensors.add(new Sensor("SJ", "San Jose sensor",37.329782, -121.88889));
+       // sensors.add(new Sensor("Earth Quake 1", "earthquake sensor 1",32.326782, -101.81889));
+       // sensors.add(new Sensor("Earth Quake 2", "earthquake sensor",37.326782, -121.81889));
 
         GridView gridview = (GridView) findViewById(R.id.gridview);
-        gridview.setAdapter(new ImageAdapter(this, sensors));
+        gridview.setAdapter(new ImageAdapter(this, sensors, user));
 
     }
 

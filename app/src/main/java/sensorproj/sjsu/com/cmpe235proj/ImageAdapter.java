@@ -19,10 +19,12 @@ import java.util.ArrayList;
 public class ImageAdapter extends BaseAdapter {
     private Context mContext;
     private ArrayList<Sensor> sensors;
+    private User user;
 
-    public ImageAdapter(Context c , ArrayList<Sensor> sensors) {
+    public ImageAdapter(Context c , ArrayList<Sensor> sensors, User user) {
         mContext = c;
         this.sensors = sensors;
+        this.user = user;
     }
 
     public int getCount() {
@@ -56,6 +58,7 @@ public class ImageAdapter extends BaseAdapter {
                 if (position ==2){
                     Intent intent = new Intent(mContext,SensorListActivity.class);
                     intent.putExtra(AppConstants.SENSOR_LIST,sensors);
+                    intent.putExtra(AppConstants.USER, user);
                     mContext.startActivity(intent);
                 }
                 else{

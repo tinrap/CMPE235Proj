@@ -10,10 +10,7 @@ public class Sensor implements Serializable
 {
 
     double longitude, latitude;
-    String name, description;
-
-
-    int id, userid;
+    String name, description, id, userid;
 
     public Sensor(){
 
@@ -60,19 +57,19 @@ public class Sensor implements Serializable
     }
 
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userid;
     }
 
-    public void setUserId(int userid) {
+    public void setUserId(String userid) {
         this.userid = userid;
     }
 }

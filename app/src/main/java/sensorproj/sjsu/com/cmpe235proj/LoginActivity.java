@@ -7,6 +7,7 @@ package sensorproj.sjsu.com.cmpe235proj;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,6 +25,7 @@ public class LoginActivity extends Activity {
 	protected EditText usernameField;
 	protected EditText passwordField;
 	private ProgressDialog progressBar;
+    private SharedPreferences preferences;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +91,14 @@ public class LoginActivity extends Activity {
 
 			if (result != null && !result.contains("<html>")) // correct Credentials
 			{
-               Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+
+                //get users info from app
+              /*  preferences = getSharedPreferences(AppConstants.APP_PREFS, 0);
+                SharedPreferences.Editor perferenceUpdater = preferences.edit();
+                perferenceUpdater.putInt(AppConstants.USER_ID, )*/
+                User user = JSONParser.parseUser(result);
+                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                intent.putExtra(AppConstants.USER, user);
                 startActivity(intent);
                 finish();
 
