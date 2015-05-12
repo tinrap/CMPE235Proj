@@ -53,6 +53,10 @@
             android:name=".SensorListActivity"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name=".RegisterSensorActivity"
+            android:label="@string/app_name" >
+        </activity>
 
 
 

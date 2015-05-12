@@ -60,6 +60,11 @@ public class ImageAdapter extends BaseAdapter {
                     intent.putExtra(AppConstants.SENSOR_LIST,sensors);
                     intent.putExtra(AppConstants.USER, user);
                     mContext.startActivity(intent);
+                } else if (position ==3){
+                    Intent intent = new Intent(mContext,RegisterSensorActivity.class);
+                    intent.putExtra(AppConstants.SENSOR_LIST,sensors);
+                    intent.putExtra(AppConstants.USER, user);
+                    mContext.startActivity(intent);
                 }
                 else{
 

@@ -5,6 +5,7 @@
     <string name="action_logout">Logout</string>
     <string name="login">Login</string>
     <string name="createAccount">Create an Account</string>
+    <string name="addSensor">Add a Sensor</string>
 
     <string name="username">Username</string>
     <string name="password">Password</string>
@@ -14,6 +15,10 @@
     <string name="enterEmail"> Enter Valid Email</string>
     <string name="enterPass"> Password</string>
     <string name="reenterPass"> Re-Enter Password</string>
+
+    <string name="sensorName"> Sensor Name</string>
+    <string name="sensorDesc"> Sensor Description</string>
+    <string name="sensorType"> Sensor Type</string>
 
     <string name="my_sensors">My Sensors</string>
 </resources>

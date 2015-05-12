@@ -50,7 +50,6 @@ public class NetworkingCall {
         //variables declared
         String message ="";
         HttpClient httpclient = new DefaultHttpClient();
-        Log.i("url",AppConstants.LOGIN_URL+email);
         HttpGet httpget = new HttpGet(AppConstants.LOGIN_URL+email);
 
         try {
@@ -87,7 +86,6 @@ public class NetworkingCall {
         //variables declared
         String message ="";
         HttpClient httpclient = new DefaultHttpClient();
-        Log.i("url",AppConstants.CREATE_USER_URL);
         HttpPost httppost = new HttpPost(AppConstants.CREATE_USER_URL);
 
         try {
@@ -142,6 +140,54 @@ public class NetworkingCall {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        return message;
+    }
+
+    public static String createSensor(String name, String userid, String desc, String type, double latitude , double longitude)
+    {
+        //variables declared
+        String message ="";
+        HttpClient httpclient = new DefaultHttpClient();
+        HttpPost httppost = new HttpPost(AppConstants.CREATE_SENSOR_URL);
+
+        try {
+
+            JSONObject sensor = new JSONObject();
+            sensor.put(AppConstants.SENSOR_NAME,name);
+            sensor.put(AppConstants.SENSOR_USER_ID,userid);
+            sensor.put(AppConstants.SENSOR_LATITUDE,latitude);
+            sensor.put(AppConstants.SENSOR_LONGITUDE,longitude);
+
+            StringEntity se = new StringEntity(sensor.toString());
+            se.setContentType("application/json;charset=UTF-8");
+            se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE,"application/json;charset=UTF-8"));
+
+
+            httppost.setEntity(se);
+            HttpResponse response = httpclient.execute(httppost);
+
+            message = EntityUtils.toString(response.getEntity());
+
+
+        } catch (UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        catch(HttpResponseException e){
+            message = null;
+        }
+        catch (ClientProtocolException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        Log.i("Results",message);
         return message;
     }
 
