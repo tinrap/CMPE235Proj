@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 /**
@@ -16,6 +17,7 @@ import android.widget.Toast;
 public class RegistrationActivity extends Activity {
 
     private ProgressDialog progressBar;
+    private  EditText name, email, pass, passtwo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,16 +26,22 @@ public class RegistrationActivity extends Activity {
 
         Button createButton = (Button) findViewById(R.id.createButton);
 
+
+        name = (EditText) findViewById(R.id.nameView);
+        email = (EditText) findViewById(R.id.emailView);
+        pass  = (EditText) findViewById(R.id.passView);
+        passtwo = (EditText) findViewById(R.id.rePassView);
+
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new LoginAsycTask().execute();
+                new CreateUserAsycTask().execute();
             }
         });
     }
 
 
-    class LoginAsycTask extends AsyncTask<String, String, String> {
+    class CreateUserAsycTask extends AsyncTask<String, String, String> {
         @Override
         protected void onPreExecute() {
 
@@ -48,18 +56,27 @@ public class RegistrationActivity extends Activity {
 
         @Override
         protected String doInBackground(String... input) {
-            //return NetworkingCall.getJSON(AppConstants.LOGIN_URL + input[0]);
-            return "";
+
+
+            return NetworkingCall.createUser(name.getText().toString(), email.getText().toString(),pass.getText().toString());
         }
 
         protected void onPostExecute(String result) {
+            if(result.contains("<html>"))
+                Toast.makeText(getApplicationContext(),"User Already exists. Try again",Toast.LENGTH_SHORT).show();
+
+            else
+            {
+                Log.i("result", result);
+                User user = JSONParser.parseUser(result);
+                Intent intent = new Intent(RegistrationActivity.this,MainActivity.class);
+                intent.putExtra(AppConstants.USER, user);
+                startActivity(intent);
+                finish();
+            }
 
             // close progress dialog
             progressBar.dismiss();
-
-            Intent intent = new Intent(RegistrationActivity.this,MainActivity.class);
-            startActivity(intent);
-            finish();
         }
 
     }

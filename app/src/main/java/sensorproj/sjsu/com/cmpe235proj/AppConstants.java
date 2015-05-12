@@ -10,11 +10,11 @@ public  class  AppConstants {
 
     public static String SENSOR_URL = "http://ec2-52-24-164-202.us-west-2.compute.amazonaws.com:8080/Sensitouch/rest/sensitouch/sensor/userid?userId=";
     public static String LOGIN_URL = "http://ec2-52-24-164-202.us-west-2.compute.amazonaws.com:8080/Sensitouch/rest/sensitouch/user/byemail?email=";
-    public static String  CREATE_USER_URL = "http://ec2-52-24-164-202.us-west-2.compute.amazonaws.com:8080/TODO/rest/sensitouch/user/create";
+    public static String  CREATE_USER_URL = "http://ec2-52-24-164-202.us-west-2.compute.amazonaws.com:8080/Sensitouch/rest/sensitouch/user/create";
 
     public static String SENSOR_ID = "id";
     public static String SENSOR_NAME ="sensorName";
-    public static String SENSOR_USER_ID = "userid";
+    public static String SENSOR_USER_ID = "userId";
     public static String SENSOR_LATITUDE = "latitude";
     public static String SENSOR_LONGITUDE = "longitude";
 
@@ -23,6 +23,8 @@ public  class  AppConstants {
     public static String USER_FIRSTNAME = "firstName";
     public static String USER_LASTNAME = "lastName";
     public static String USER_EMAIL = "emailId";
+
+    public static String USER_PASS = "password";
 
 
 
