@@ -1,5 +1,6 @@
 package sensorproj.sjsu.com.cmpe235proj;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -55,16 +56,27 @@ public class ImageAdapter extends BaseAdapter {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (position ==2){
-                    Intent intent = new Intent(mContext,SensorListActivity.class);
-                    intent.putExtra(AppConstants.SENSOR_LIST,sensors);
-                    intent.putExtra(AppConstants.USER, user);
-                    mContext.startActivity(intent);
-                } else if (position ==3){
+                if (position ==1){
                     Intent intent = new Intent(mContext,RegisterSensorActivity.class);
                     intent.putExtra(AppConstants.SENSOR_LIST,sensors);
                     intent.putExtra(AppConstants.USER, user);
                     mContext.startActivity(intent);
+                } else  if (position ==2){
+                    Intent intent = new Intent(mContext,SensorListActivity.class);
+                    intent.putExtra(AppConstants.SENSOR_LIST,sensors);
+                    intent.putExtra(AppConstants.USER, user);
+                    mContext.startActivity(intent);
+                }else  if (position ==3){
+                    Intent intent = new Intent(mContext,MapActivity.class);
+                    intent.putExtra(AppConstants.SENSOR_LIST,sensors);
+                    intent.putExtra(AppConstants.USER, user);
+                    intent.putExtra(AppConstants.MAP_TYPE, AppConstants.FROM_HOME);
+                    mContext.startActivity(intent);
+                }
+                else if (position ==5){
+                    Intent intent = new Intent(mContext,LoginActivity.class);
+                    mContext.startActivity(intent);
+                    ((Activity)mContext).finish();
                 }
                 else{
 
@@ -81,14 +93,14 @@ public class ImageAdapter extends BaseAdapter {
 
     // references to our images
     private Integer[] mThumbIds = {
-            R.drawable.home,R.drawable.register,
-            R.drawable.gps, R.drawable.remote_control,
-            R.drawable.monito, R.drawable.database
+            R.drawable.home,R.drawable.plus_sign,
+            R.drawable.afflist, R.drawable.gps,
+            R.drawable.settings, R.drawable.logout
     };
 
     private String[] titles = {
-           "Home", "Register ", "Location Based View",
-            "Sensor Control", "Sensor Monitor", "Data Collection"
+           "Home", "Add Sensor ", "My Sensors",
+            "Sensors Around me", "Settings", "Logout"
     };
 
 }

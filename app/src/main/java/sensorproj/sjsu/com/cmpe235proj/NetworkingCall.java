@@ -155,6 +155,7 @@ public class NetworkingCall {
             JSONObject sensor = new JSONObject();
             sensor.put(AppConstants.SENSOR_NAME,name);
             sensor.put(AppConstants.SENSOR_USER_ID,userid);
+            sensor.put(AppConstants.SENSOR_DESCRIPTION,desc);
             sensor.put(AppConstants.SENSOR_LATITUDE,latitude);
             sensor.put(AppConstants.SENSOR_LONGITUDE,longitude);
 
@@ -186,8 +187,6 @@ public class NetworkingCall {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
-        Log.i("Results",message);
         return message;
     }
 

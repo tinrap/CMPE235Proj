@@ -69,6 +69,7 @@ public class ListAdapter extends BaseAdapter {
                     Intent intent = new Intent(mContext, MapActivity.class);
                     intent.putExtra(AppConstants.SENSOR, sensor);
                     intent.putExtra(AppConstants.SENSOR_LIST,sensors);
+                intent.putExtra(AppConstants.MAP_TYPE, AppConstants.FROM_LIST);
                     mContext.startActivity(intent);
 
             }

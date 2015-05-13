@@ -31,6 +31,9 @@ public class JSONParser {
                     sensor.setName(s.getString(AppConstants.SENSOR_NAME));
                 if(s.has(AppConstants.SENSOR_USER_ID))
                      sensor.setUserId(s.getString(AppConstants.SENSOR_USER_ID));
+
+                if(s.has(AppConstants.SENSOR_DESCRIPTION))
+                    sensor.setDescription(s.getString(AppConstants.SENSOR_DESCRIPTION));
                 if(s.has(AppConstants.SENSOR_LATITUDE))
                     sensor.setLatitude(s.getDouble(AppConstants.SENSOR_LATITUDE));
                 if(s.has(AppConstants.SENSOR_LONGITUDE))

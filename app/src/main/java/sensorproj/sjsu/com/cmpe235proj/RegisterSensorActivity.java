@@ -123,23 +123,18 @@ public class RegisterSensorActivity extends Activity implements
 
         @Override
         protected String doInBackground(String... input) {
-
-
             return NetworkingCall.createSensor(name.getText().toString(), user.getId(), desc.getText().toString(),type.getText().toString(),latitude,longitude);
         }
 
         protected void onPostExecute(String result) {
             if(result.contains("<html>"))
-                Toast.makeText(getApplicationContext(), "Error adding sensor", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Error adding sensor.", Toast.LENGTH_SHORT).show();
 
             else
             {
-                Log.i("result", result);
-               /* User user = JSONParser.parseUser(result);
-                Intent intent = new Intent(RegisterSensorActivity.this,MainActivity.class);
-                intent.putExtra(AppConstants.USER, user);
-                startActivity(intent);
-                finish();*/
+
+                Toast.makeText(getApplicationContext(), "Successfully added sensor.", Toast.LENGTH_SHORT).show();
+                finish();
             }
 
             // close progress dialog

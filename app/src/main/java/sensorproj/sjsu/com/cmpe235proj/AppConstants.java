@@ -18,6 +18,11 @@ public  class  AppConstants {
     public static String SENSOR_USER_ID = "userid";
     public static String SENSOR_LATITUDE = "latitude";
     public static String SENSOR_LONGITUDE = "longitude";
+    public static String SENSOR_DESCRIPTION = "sensorDescription";
+
+    public static String MAP_TYPE = "map-type";
+    public static String FROM_HOME ="from_home";
+    public static String FROM_LIST ="from_list";
 
     public static String USER = "user";
     public static String USER_ID = "userId";

@@ -8,6 +8,9 @@ import java.io.Serializable;
 public class User implements Serializable {
 
     private String firstName, lastName, email, id;
+    private double latitude;
+
+    private double longitude;
 
     public User(){
 
@@ -44,4 +47,22 @@ public class User implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
+
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
 }
