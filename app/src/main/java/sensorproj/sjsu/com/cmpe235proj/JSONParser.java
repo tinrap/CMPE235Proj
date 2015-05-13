@@ -49,6 +49,42 @@ public class JSONParser {
         return sensors;
     }
 
+
+    public static ArrayList<SensorData> parseSensorData(String json){
+        ArrayList<SensorData> dataList = new ArrayList<SensorData>();
+        JSONObject s, time;
+        SensorData data;
+
+        try {
+            JSONArray sensorArray = new JSONArray(json);
+            int size =  sensorArray.length();
+
+            for(int count = 0; count < size; count++){
+                s = sensorArray.getJSONObject(count);
+                data = new SensorData();
+
+
+                time = s.getJSONObject(AppConstants.SENSOR_DATA_ID);
+                data.setTime(time.getLong(AppConstants.SENSOR_DATA_DATE));
+
+                if(s.has(AppConstants.SENSOR_DATA))
+                   data.setData(s.getString(AppConstants.SENSOR_DATA));
+                if(s.has(AppConstants.SENSOR_STATUS))
+                    data.setStatus(s.getString(AppConstants.SENSOR_STATUS));
+                if(s.has(AppConstants.SENSOR_POWER))
+                    data.setPower(s.getString(AppConstants.SENSOR_POWER));
+
+
+                dataList.add(data);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        return dataList;
+    }
+
     public static User parseUser(String json){
         User user =  new User();;
 

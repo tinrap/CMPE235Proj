@@ -10,23 +10,27 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
- * Created by Parnit on 4/28/2015.
- * Description: Adapter class to set up list of sensors
+ * Created by Parnit on 5/12/2015.
  */
-public class ListAdapter extends BaseAdapter {
+public class DataListAdapter extends BaseAdapter {
     private Context mContext;
+    private ArrayList<SensorData> data;
     private ArrayList<Sensor> sensors;
+    private Sensor sensor;
 
-    public ListAdapter(Context c, ArrayList<Sensor> sensors) {
+    public DataListAdapter(Context c, ArrayList<SensorData> data, ArrayList<Sensor> sensors, Sensor sensor) {
         mContext = c;
-        this.sensors= sensors;
+        this.data= data;
+        this.sensor = sensor;
+        this.sensors = sensors;
     }
 
 
     public int getCount() {
-        return sensors.size();
+        return data.size();
     }
 
     public Object getItem(int position) {
@@ -41,7 +45,7 @@ public class ListAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         TextView name, desc, location;
         LinearLayout row;
-        final Sensor sensor;
+        final SensorData entry;
         if (convertView == null) {
             LayoutInflater mInflater = LayoutInflater.from(mContext);
             // if it's not recycled, initialize some attributes
@@ -49,28 +53,30 @@ public class ListAdapter extends BaseAdapter {
         }
 
         //set up a sensors list fields
-        sensor = sensors.get(position);
+        entry = data.get(position);
+
         name = (TextView) convertView.findViewById(R.id.name);
         desc = (TextView) convertView.findViewById(R.id.desc);
         location = (TextView) convertView.findViewById(R.id.location);
         row = (LinearLayout) convertView.findViewById(R.id.row);
 
-        //set up row's display
-        name.setText(sensor.getName());
-        desc.setText(sensor.getDescription());
-        location.setText("Location = "+ sensor.getLatitude() +","+sensor.getLongitude());
+        name.setText("Data: "+ entry.getData());
+        desc.setText("Status: " + entry.getStatus());
 
+        Date date = new Date(entry.getTime());
+        date.setTime(entry.getTime());
+        location.setText("Time: " + date.toString());
 
         //if sensor is clicked, show it on the map
         row.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                    Intent intent = new Intent(mContext, SensorDescActivity.class);
-                    intent.putExtra(AppConstants.SENSOR, sensor);
-                    intent.putExtra(AppConstants.SENSOR_LIST,sensors);
-                    intent.putExtra(AppConstants.MAP_TYPE, AppConstants.FROM_LIST);
-                    mContext.startActivity(intent);
+                Intent intent = new Intent(mContext, MapActivity.class);
+                intent.putExtra(AppConstants.SENSOR, sensor);
+                intent.putExtra(AppConstants.SENSOR_LIST, sensors);
+                intent.putExtra(AppConstants.MAP_TYPE, AppConstants.FROM_LIST);
+                mContext.startActivity(intent);
 
             }
         });

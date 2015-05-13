@@ -126,7 +126,9 @@ public class RegisterSensorActivity extends Activity implements
             return NetworkingCall.createSensor(name.getText().toString(), user.getId(), desc.getText().toString(),type.getText().toString(),latitude,longitude);
         }
 
+
         protected void onPostExecute(String result) {
+            Log.i("result",result+"");
             if(result.contains("<html>"))
                 Toast.makeText(getApplicationContext(), "Error adding sensor.", Toast.LENGTH_SHORT).show();
 
