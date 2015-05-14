@@ -56,6 +56,7 @@ public class SensorDescActivity  extends Activity {
 
         @Override
         protected String doInBackground(String... input) {
+            Log.i("link" , AppConstants.GET_SENSOR_INFO+ input[0]);
             return NetworkingCall.getJSON(AppConstants.GET_SENSOR_INFO+ input[0]);
             // return "";
         }
@@ -67,7 +68,9 @@ public class SensorDescActivity  extends Activity {
                 Log.i("api call", result);
                 data = JSONParser.parseSensorData(result);
 
-                dataList.setAdapter(new DataListAdapter(SensorDescActivity.this, data, new ArrayList<Sensor>(), sensor));
+                ArrayList<Sensor> sensors = new ArrayList<Sensor>();
+                sensors.add(sensor);
+                dataList.setAdapter(new DataListAdapter(SensorDescActivity.this, data, sensors, sensor));
 
             } else // incorrect credentials
             {
